@@ -1,19 +1,17 @@
 def handle_examineIntent(intent, session):
 
-    description = "I am not sure what you wanted to examine, can you ask me that again?"
-    #if 'Object' in intent['slots']:
-    #    objKey = intent['slots']['Object']['value']
-    #    if 'descriptions' in session.get('attributes', {}):
-    #        description = session['attributes']['descriptions'][objKey]
+    session_attributes = session['attributes']
 
-    return build_response({}, build_speechlet_response(intent['name'], description, None, False))
+    if 'Object' in intent['slots']:
+        objKey = intent['slots']['Object']['value']
+        description = "I will describe " + objKey;
+        if 'descriptions' in session.get('attributes', {}):
+            description = session['attributes']['descriptions'].get(objKey)
 
+    if not description:
+        description = "I am not sure what you wanted to examine, can you ask me that again?"
 
-
-
-
-
-
+    return build_response(session_attributes, build_speechlet_response(intent['name'], description, None, False))
 
 def build_speechlet_response(title, output, reprompt_text, should_end_session):
     return {

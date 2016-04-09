@@ -42,9 +42,6 @@ def on_launch(launch_request, session):
     want
     """
 
-    #session['attributes']['descriptions'] = dict()
-    #session['attributes']['descriptions']['Camel'] = "This is a test description"
-
     print("on_launch requestId=" + launch_request['requestId'] +
           ", sessionId=" + session['sessionId'])
 
@@ -84,6 +81,9 @@ def get_welcome_response():
     """
 
     session_attributes = {}
+    session_attributes['descriptions'] = {}
+    session_attributes['descriptions']['Camel'] = "This is a test description"
+
     card_title = "Welcome"
     speech_output = "Welcome to the Alexa Skills Kit sample. " \
                     "Please tell me your favorite color by saying, " \
