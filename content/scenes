@@ -1,0 +1,18 @@
+office
+	A dusty, boring office with a desk. There is a painting of a dog on the wall.
+	examine desk - [desk]
+	examine picture - [picture]
+
+desk
+	On the desk is a package of red balloons.
+	examine balloon - The balloon is in good condition. There appears to be writing in sharpie on the side of the balloon.
+	stretch balloon - The balloon is in good condition. There appears to be writing in sharpie on the side of the balloon.
+	blow balloon - You take a big breath, and fill the balloon with air. Written on the side of the balloon are the digits 739.
+
+painting
+	The painting is old, but looks to have been moved recently.
+	examine painting - 
+
+safe_behind_painting
+Behind the painting there is safe inlaid in the wall.
+combo
