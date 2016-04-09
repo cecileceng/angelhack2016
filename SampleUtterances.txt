@@ -1,1 +1,8 @@
 ExamineIntent Examine {Object}
+ExamineIntent Examine the {Object}
+ExamineIntent Look at {Object}
+ExamineIntent Look at the {Object}
+ExamineIntent Tell me about {Object}
+ExamineIntent Tell me about the {Object}
+ExamineIntent Describe {Object}
+ExamineIntent Describe the {Object}
