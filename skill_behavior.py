@@ -28,17 +28,17 @@ def handle_scene_response(intent, session):
     session_attributes = {}
     should_end_session = False
 
-		scene = get_scene_from_session(session)
+        scene = get_scene_from_session(session)
 
-		if 'Scene' in intent['slots']:
+        if 'Scene' in intent['slots']:
         scene = intent['slots']['Scene']['value']
-				scene_description = get_scene_description_from_scene(scene)
+                scene_description = get_scene_description_from_scene(scene)
         session_attributes = {"currentScene": scene}
         speech_output = scene_description
 
     elif 'Action' in intent['slots']:
         action = intent['slots']['Action']['value']
-				action_description = get_action_description_from_scene(scene, action)
+                action_description = get_action_description_from_scene(scene, action)
         speech_output = action_description
         reprompt_text = "I'm not sure what that is. " \
                         "Please try again."
@@ -61,10 +61,10 @@ def get_scene_from_session(session):
         scene = 'start'
 
 def get_scene_description_from_scene(scene)
-		# TODO parse description text from scene map
-		return 'Llamas'
+        # TODO parse description text from scene map
+        return 'Llamas'
 
 def get_action_description_from_scene(scene, action)
-		# TODO parse action description text from scene map
-		return 'Do a flip!'
+        # TODO parse action description text from scene map
+        return 'Do a flip!'
 
