@@ -1,0 +1,13 @@
+{
+  "intents": [
+    {
+      "intent": "MyNameIs",
+      "slots": [
+        {
+          "name": "Lover",
+          "type": "LIST_OF_LOVERS"
+        }
+      ]
+    }
+  ]
+}

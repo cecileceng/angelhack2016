@@ -1,0 +1,3 @@
+MyNameIs My name is {Lover}
+MyNameIs {Lover} is my name
+MyNameIs {Lover}
