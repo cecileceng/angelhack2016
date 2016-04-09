@@ -42,9 +42,13 @@ def on_launch(launch_request, session):
     want
     """
 
+    #session['attributes']['descriptions'] = dict()
+    #session['attributes']['descriptions']['Camel'] = "This is a test description"
+
     print("on_launch requestId=" + launch_request['requestId'] +
           ", sessionId=" + session['sessionId'])
-    
+
+    return get_welcome_response()
     # Dispatch to your skill's launch
     # Use skill-behavior.py
 
@@ -57,6 +61,11 @@ def on_intent(intent_request, session):
     intent = intent_request['intent']
     intent_name = intent_request['intent']['name']
 
+    if intent_name == "ExamineIntent":
+        return intent_handler.handle_examineIntent(intent, session)
+    else:
+        raise ValueError("Invalid intent")
+
     # Dispatch to your skill's intent handlers
     # Use intent-handler.py
 
@@ -68,3 +77,21 @@ def on_session_ended(session_ended_request, session):
     """
     print("on_session_ended requestId=" + session_ended_request['requestId'] +
           ", sessionId=" + session['sessionId'])
+
+def get_welcome_response():
+    """ If we wanted to initialize the session to have some attributes we could
+    add those here
+    """
+
+    session_attributes = {}
+    card_title = "Welcome"
+    speech_output = "Welcome to the Alexa Skills Kit sample. " \
+                    "Please tell me your favorite color by saying, " \
+                    "my favorite color is red"
+    # If the user either does not reply to the welcome message or says something
+    # that is not understood, they will be prompted again with this text.
+    reprompt_text = "Please tell me your favorite color by saying, " \
+                    "my favorite color is red."
+    should_end_session = False
+    return intent_handler.build_response(session_attributes, intent_handler.build_speechlet_response(
+        card_title, speech_output, reprompt_text, should_end_session))
