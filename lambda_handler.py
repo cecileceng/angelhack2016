@@ -1,6 +1,6 @@
 from __future__ import print_function
-import intent-handler
-import skill-behavior
+import intent_handler
+import skill_behavior
 
 def lambda_handler(event, context):
     """ Route the incoming request based on type (LaunchRequest, IntentRequest,
