@@ -11,8 +11,8 @@ desk
 
 painting
 	The painting is old, but looks to have been moved recently.
-	examine painting - 
+	examine painting - [safe]
 
-safe_behind_painting
-Behind the painting there is safe inlaid in the wall.
-combo
+safe
+	Behind the painting there is safe inlaid in the wall.
+	enter combination
