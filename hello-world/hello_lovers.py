@@ -118,20 +118,24 @@ def compliment_me(intent, session):
     should_end_session = False
 
     if 'Lover' in intent['slots']:
-        current_lover = intent['slots']['Lover']['value']
+        current_lover = str.lower(intent['slots']['Lover']['value'])
 
-        if current_lover == 'Cecile':
+        if current_lover == 'cecile':
             speech_output = "You are an amazingly wonderful and kind person. " + \
                             "I think about you when I am lonely at night."
-        elif current_lover == 'Groot':
-            speech_output = "You are High Speed Matt! You always make me chuckle." + \
+            should_end_session = True
+        elif current_lover == 'groot':
+            speech_output = "You are High Speed Matt! You always make me chuckle. " + \
                             "I occasionally think about you sometimes."
-        elif current_lover == 'Chris':
+            should_end_session = True
+        elif current_lover == 'chris':
             speech_output = "You are the manliest man I have ever known! " + \
                             "I think about you when I am lonely at night."
-        elif current_lover == 'Ian':
+            should_end_session = True
+        elif current_lover == 'ian':
             speech_output = "I admire your great and mighty beard! " + \
                             "I think about it when I am lonely at night."
+            should_end_session = True
 
         reprompt_text = "Who are you?"
     else:
@@ -141,59 +145,6 @@ def compliment_me(intent, session):
 
     return build_response(session_attributes, build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
-
-
-# def set_color_in_session(intent, session):
-#     """ Sets the color in the session and prepares the speech to reply to the
-#     user.
-#     """
-
-#     card_title = intent['name']
-#     session_attributes = {}
-#     should_end_session = False
-
-#     if 'Color' in intent['slots']:
-#         favorite_color = intent['slots']['Color']['value']
-#         session_attributes = create_favorite_color_attributes(favorite_color)
-#         speech_output = "I now know your favorite color is " + \
-#                         favorite_color + \
-#                         ". You can ask me your favorite color by saying, " \
-#                         "what's my favorite color?"
-#         reprompt_text = "You can ask me your favorite color by saying, " \
-#                         "what's my favorite color?"
-#     else:
-#         speech_output = "I'm not sure what your favorite color is. " \
-#                         "Please try again."
-#         reprompt_text = "I'm not sure what your favorite color is. " \
-#                         "You can tell me your favorite color by saying, " \
-#                         "my favorite color is red."
-#     return build_response(session_attributes, build_speechlet_response(
-#         card_title, speech_output, reprompt_text, should_end_session))
-
-
-# def create_favorite_color_attributes(favorite_color):
-#     return {"favoriteColor": favorite_color}
-
-
-# def get_color_from_session(intent, session):
-#     session_attributes = {}
-#     reprompt_text = None
-
-#     if "favoriteColor" in session.get('attributes', {}):
-#         favorite_color = session['attributes']['favoriteColor']
-#         speech_output = "Your favorite color is " + favorite_color + \
-#                         ". Goodbye."
-#         should_end_session = True
-#     else:
-#         speech_output = "I'm not sure what your favorite color is. " \
-#                         "You can say, my favorite color is red."
-#         should_end_session = False
-
-#     # Setting reprompt_text to None signifies that we do not want to reprompt
-#     # the user. If the user does not respond or says something that is not
-#     # understood, the session will end.
-#     return build_response(session_attributes, build_speechlet_response(
-#         intent['name'], speech_output, reprompt_text, should_end_session))
 
 # --------------- Helpers that build all of the responses ----------------------
 
