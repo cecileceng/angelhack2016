@@ -1,15 +1,6 @@
 {
   "intents": [
     {
-      "intent": "MyColorIsIntent",
-      "slots": [
-        {
-          "name": "Color",
-          "type": "LIST_OF_COLORS"
-        }
-      ]
-    },
-    {
       "intent": "ExamineIntent",
       "slots": [
         {
@@ -17,9 +8,6 @@
           "type": "LIST_OF_OBJECTS"
         }
       ]
-    },
-    {
-      "intent": "WhatsMyColorIntent"
     },
     {
       "intent": "AMAZON.HelpIntent"

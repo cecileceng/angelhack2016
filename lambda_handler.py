@@ -82,7 +82,8 @@ def get_welcome_response():
 
     session_attributes = {}
     session_attributes['descriptions'] = {}
-    session_attributes['descriptions']['Camel'] = "This is a test description"
+    session_attributes['descriptions']['camel'] = "This is a test description of the camel"
+    session_attributes['descriptions']['desk'] = "This is a test description of the desk"
 
     card_title = "Welcome"
     speech_output = "Welcome to the Alexa Skills Kit sample. " \

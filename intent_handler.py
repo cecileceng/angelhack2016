@@ -3,10 +3,13 @@ def handle_examineIntent(intent, session):
     session_attributes = session['attributes']
 
     if 'Object' in intent['slots']:
-        objKey = intent['slots']['Object']['value']
-        description = "I will describe " + objKey;
+        objKey = intent['slots']['Object']['value'].lower()
+
         if 'descriptions' in session.get('attributes', {}):
             description = session['attributes']['descriptions'].get(objKey)
+
+        if not description:
+            description = "I will describe " + objKey;
 
     if not description:
         description = "I am not sure what you wanted to examine, can you ask me that again?"
