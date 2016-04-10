@@ -1,3 +1,5 @@
+import re
+
 def build_speechlet_response(title, output, reprompt_text, should_end_session):
     return {
         'outputSpeech': {
@@ -20,6 +22,7 @@ def build_speechlet_response(title, output, reprompt_text, should_end_session):
 
 
 def build_response(session_attributes, speechlet_response):
+    print 'build_response.session_attributes',session_attributes
     return {
         'version': '1.0',
         'sessionAttributes': session_attributes,
@@ -27,8 +30,10 @@ def build_response(session_attributes, speechlet_response):
     }
 
 def get_intent_value(intent, string):
-		value = intent['slots'][string]['value']
-		return sanitize_numericals_in_string(str.lower(str(value)))
+    value = intent['slots'][string]['value']
+    ans = sanitize_numericals_in_string(str.lower(str(value)))
+    print 'get_intent_value.(string, value, sanitized):',string,value,ans
+    return ans
 
 def sanitize_numericals_in_string(phrase):
     list_of_words = phrase.split(' ')

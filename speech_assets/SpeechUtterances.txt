@@ -6,5 +6,4 @@ ActionIntent {Object}, {Action} it
 ActionIntent a {Object}, {Action} it
 ActionIntent an {Object}, {Action} it
 ActionIntent the {Object}, {Action} it
-ActionIntent {Action} the {Scene}
 ActionIntent {Direction}

@@ -22,7 +22,9 @@ def lambda_handler(event, context):
                            event['session'])
 
     if event['request']['type'] == "LaunchRequest":
-        return on_launch(event['request'], event['session'])
+        a = on_launch(event['request'], event['session'])
+        # print('lambda_handler.on_launch', a)
+        return a
     elif event['request']['type'] == "IntentRequest":
         return on_intent(event['request'], event['session'])
     elif event['request']['type'] == "SessionEndedRequest":
@@ -59,9 +61,9 @@ def on_intent(intent_request, session):
 
     if intent_name == "ActionIntent":
         return skill_behavior.handle_action_intent(intent, session)
-    elif intent_name == "HelpIntent":
+    elif intent_name == "AMAZON.HelpIntent":
         return skill_behavior.handle_help_intent(intent, session)
-    elif intent_name == "QuitIntent":
+    elif intent_name == "AMAZON.CancelIntent":
         return skill_behavior.handle_quit_intent(intent, session)
     else:
         raise ValueError("Invalid intent")
