@@ -1,10 +1,9 @@
 test_room	load	Version 0. You are in a room. Outside it is dark and stormy. There is a drink. 	
 test_room	reload	You can... drink water, do nothing, or exit room. 	
-test_room	drink-water	You drink the water. You are refreshed! 	nextscene_end_scene
+test_room	drink-water	You drink the water. You are refreshed! 	exec_endgame
 test_room	do-nothing	You don't drink the water. You die of boredom. 	exec_endgame
 test_room	exit-room	You exit the scene. 	nextscene_test_room_2
 test_room_2	load	You are in the second scene. Hip hip hurray! 	exec_endgame
-end_scene	load	Game over! ...	exec_endgame
 introduction	load	Welcome to Alexa Adventures. When you are ready, say "let's play". 	
 introduction	let's-play	It's nearly midnight. You received a text message from your business partner Burt Wordsworth earlier this evening. He's not typically the type to message late at night. Burt has since been unresponsive with your calls and text messages. You glance down at your phone to look at the time and the last message you received… ‘The dark visions have been increasing… I know it sounds crazy, but I think we're in danger. Not just us but everyone. I can't stay here. Meet me at the hotel at midnight. My friend Henry runs the bar, tell him that Birdie sent you. I hope we're not too late to stop it...' 	nextscene_hotel_bar_1a
 hotel_bar_1a	load	You are in a dimly lit hotel bar. It's near closing time, so it's empty aside from the bartender polishing the last of the glasses from the evening's crowd. 	

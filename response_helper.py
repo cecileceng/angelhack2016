@@ -2,6 +2,7 @@ import re
 import csv
 
 def build_speechlet_response(title, output, reprompt_text, should_end_session):
+    print 'build_speechlet_response.should_end_session',should_end_session
     return {
         'outputSpeech': {
             'type': 'PlainText',
