@@ -104,11 +104,16 @@ def load_scene_data():
             all_data.append(row)
 
     d = dict()
+    d['scenes'] = {}
     for r in all_data:
-        new_key = r[0] + '+' + r[1]
         desc_action = dict()
         desc_action['description'] = r[2]
         desc_action['next_exec'] = r[3]
-        d['scenes'] = {new_key: desc_action}
+
+        new_key = r[0] + '+' + r[1]
+        d['scenes'][new_key] = desc_action
 
     return d
+
+if __name__ == '__main__':
+    print load_scene_data()
