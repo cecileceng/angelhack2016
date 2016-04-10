@@ -43,6 +43,7 @@ def handle_action_intent(intent, session):
     should_end_session = False
     session_attributes = session['attributes']
 
+    print 'handle_action_intent.intent', intent
     print 'handle_action_intent.session', session
 
     scene = get_scene_from_session(session)
@@ -50,7 +51,7 @@ def handle_action_intent(intent, session):
 
     print 'handle_action_intent.scene', scene
 
-    if 'Action' in intent['slots'] and 'Object' in intent['slots']:
+    if ('Action' in intent['slots'] and 'Object' in intent['slots']) and ('value' in intent['slots']['Action'] and 'value' in intent['slots']['Object']):
         verb = response_helper.get_intent_value(intent, 'Action')
         thing = response_helper.get_intent_value(intent, 'Object')
         action = verb + '-' + thing
@@ -62,7 +63,7 @@ def handle_action_intent(intent, session):
         session_attributes['currentScene'] = next_scene
         scene_description = get_scene_description_from_scene(session, next_scene)
         speech_output += scene_description
-        
+          
         reprompt_text = "Sorry, I didn't catch that."
     else:
         speech_output = "Sorry, I don't understand, please try again."
