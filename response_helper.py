@@ -26,6 +26,20 @@ def build_response(session_attributes, speechlet_response):
         'response': speechlet_response
     }
 
+def get_intent_value(intent, string):
+		value = intent['slots'][string]['value']
+		return sanitize_numericals_in_string(str.lower(str(value)))
+
+def sanitize_numericals_in_string(phrase):
+    list_of_words = phrase.split(' ')
+    ans = list()
+    for word in list_of_words:
+        if len(word) == len(re.sub('[A-z]+','',word)) and len(re.findall('[0-9]+',word)) > 0:
+            ans.append(numToWords(int(word)))
+        else:
+            ans.append(word)
+    return ' '.join(ans)
+
 def numToWords(num,join=True):
     '''words = {} convert an integer number into words'''
     units = ['','one','two','three','four','five','six','seven','eight','nine']
@@ -64,17 +78,8 @@ def numToWords(num,join=True):
     if join: return ' '.join(words)
     return words
 
-def sanitize_numericals_in_string(phrase):
-    list_of_words = phrase.split(' ')
-    ans = list()
-    for word in list_of_words:
-        if len(word) == len(re.sub('[A-z]+','',word)) and len(re.findall('[0-9]+',word)) > 0:
-            ans.append(numToWords(int(word)))
-        else:
-            ans.append(word)
-    return ' '.join(ans)
-
 if __name__ == '__main__':
     print sanitize_numericals_in_string('3 blind mice')
     print sanitize_numericals_in_string('12 days of Christmas')
     print numToWords(1984)
+

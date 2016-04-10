@@ -15,6 +15,9 @@
     },
     {
       "intent": "AMAZON.HelpIntent"
+    },
+		{
+      "intent": "AMAZON.QuitIntent"
     }
   ]
 }
