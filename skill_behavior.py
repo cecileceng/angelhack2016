@@ -43,7 +43,11 @@ def handle_action_intent(intent, session):
     #    speech_output = scene_description
 
     if 'Action' in intent['slots']:
+        # get and sanitize action value
         action = intent['slots']['Action']['value']
+        action = str.lower(str(action))
+        action = num_to_word.sanitize_numericals_in_string(action)
+
         action_description = get_action_description_from_scene(scene, action)
         speech_output = action_description
         reprompt_text = "I'm not sure what that is. " \
