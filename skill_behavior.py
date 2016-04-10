@@ -6,17 +6,16 @@ def get_welcome_response():
     add those here
     """
 
-    session_attributes = {}
-    session_attributes['currentScene'] = 'hotelBar'
+    session_attributes = load_scene_data()
+    session_attributes['currentScene'] = 'test_room+load'
 
     # session_attributes['scene'] = {}
     # session_attributes['scene']['hotelBar'] = {}
     # session_attributes['scene']['hotelBar']['examine:bar'] = "This is the test description of the hotel bar"
     # session_attributes['scene']['hotelBar']['smash']
 
-    card_title = "Welcome"
-    speech_output = "Welcome to the Alexa mud simulator. " \
-                    "Are you ready to begin?"
+    card_title = "Welcome to AlexaRPG"
+    speech_output = "Welcome to Alexa RPG. Are you ready to begin?"
     # If the user either does not reply to the welcome message or says something
     # that is not understood, they will be prompted again with this text.
     reprompt_text = "Are you ready to begin?"
@@ -38,9 +37,9 @@ def handle_action_intent(intent, session):
     should_end_session = False
 
     scene = get_scene_from_session(session)
-        speech_output = ''
+    speech_output = ''
 
-    if 'Action' in intent['slots'] && 'Object' in intent['slots']:
+    if 'Action' in intent['slots'] and 'Object' in intent['slots']:
                 verb = response_helper.get_intent_value(intent, 'Action')
                 thing = response_helper.get_intent_value(intent, 'Object')
                 action = verb + '-' + thing
@@ -110,6 +109,9 @@ def load_scene_data():
         desc_action = dict()
         desc_action['description'] = r[2]
         desc_action['next_exec'] = r[3]
-        d[new_key] = desc_action
+        d['scenes'] = {new_key: desc_action}
 
     return d
+
+if __name__ == '__main__':
+    print load_scene_data()
