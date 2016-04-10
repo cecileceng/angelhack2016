@@ -5,8 +5,8 @@ test_room	do-nothing	You don't drink the water. You die of boredom. Good game. 	
 test_room	exit-room	You exit the scene. 	nextscene_test_room_2
 test_room_2	load	You are in the second scene. Hip hip hurray! 	exec_endgame
 introduction	load	Welcome to Alexa Adventures. When you are ready, say "let's play". 	
-introduction	let's-play	You received a text message from your business partner Burt Wordsworth earlier this evening. He seemed distressed and asked you to meet him at a nearby hotel at midnight. His friend Henry runs the bar, and says to tell him that Birdie sent you.' 	nextscene_hotel_bar_1a
-hotel_bar_1a	load	You are in a dimly lit hotel bar. It's near closing time, so it's empty aside from the bartender polishing the last of the glasses from the evening's crowd. 	
+introduction	let's-play	You received a text message from your business partner Burt Wordsworth earlier this evening. He seemed distressed and asked you to meet him at a nearby hotel at midnight. His friend Henry runs the bar, and says to tell him that Birdie sent you.'... 	nextscene_hotel_bar_1a
+hotel_bar_1a	load	You are in a dimly lit hotel bar. 	
 hotel_bar_1a	reload	You can... examine bar, examine bartender, talk to bartender, punch bartender, examine glasses, pick up glasses, exit room. 	
 hotel_bar_1a	examine-bar	It's a typical hotel bar. The smell of cigarettes is pervasive and the tables and counters are sticky from spilled drinks. 	
 hotel_bar_1a	examine-bartender	A tall gentleman stands behind the bar. His indifference towards you, his job and the world is very apparent as he stares blankly at nothing while wearing a permanent scowl on his face. 	
