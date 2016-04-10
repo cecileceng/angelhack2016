@@ -16,7 +16,7 @@ def get_welcome_response():
     # session_attributes['scene']['hotelBar']['smash']
 
     card_title = "Welcome to AlexaRPG"
-    speech_output = "Welcome to Alexa RPG. Let's begin!" + \
+    speech_output = "Welcome to Alexa R-P-G. Let's begin! " + \
         session_attributes['scenes'][session_attributes['currentScene']]['description']
     should_end_session = False
     reprompt_text = None
@@ -40,18 +40,25 @@ def handle_action_intent(intent, session):
     scene = get_scene_from_session(session)
     speech_output = ''
 
+    print 1 #DEBUG DELETE ME PPLSSSSS
+
     if 'Action' in intent['slots'] and 'Object' in intent['slots']:
+        print 2 #DEBUG DELETE ME PPLSSSSS
         verb = response_helper.get_intent_value(intent, 'Action')
         thing = response_helper.get_intent_value(intent, 'Object')
+        print 3 #DEBUG DELETE ME PPLSSSSS
         action = verb + '-' + thing
         action_description = get_action_description_from_scene(scene, action)
         speech_output += action_description
+        print 4 #DEBUG DELETE ME PPLSSSSS
         next_scene = get_next_scene(scene, action)
         scene_description = get_scene_description_from_scene(next_scene)
         speech_output += scene_description
+        print 5 #DEBUG DELETE ME PPLSSSSS
         
         reprompt_text = "Sorry, I didn't catch that."
     else:
+        print 6 #DEBUG DELETE ME PPLSSSSS
         speech_output = "I'm not sure what that is. " \
                         "Please try again."
         reprompt_text = "I'm not sure what that is. " \

@@ -1,3 +1,3 @@
-test_room	load	You are in a room. Outside it is dark and stormy. There is a drink. You can drink the drink or do nothing.	
-test_room	drink-water	You drink the drink. You die of poisoning. Good game.	
-test_room	nothing	You don't drink the drink. You die of boredom. Good game.	
+test_room	load	You are in a room. Outside it is dark and stormy. There is a drink. You can drink water or do nothing.	
+test_room	drink-water	You drink the water. You die of poisoning. Good game.	
+test_room	nothing	You don't drink the water. You die of boredom. Good game.	
