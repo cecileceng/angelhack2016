@@ -100,3 +100,6 @@ def sanitize_verb(verb):
                 return k
 
     return verb
+
+if __name__ == '__main__':
+    print sanitize_verb('inhale')

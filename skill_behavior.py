@@ -17,7 +17,7 @@ def get_welcome_response():
 
     card_title = "Welcome to AlexaRPG"
     # debug output
-    speech_output = 'Version 9. ' + \
+    speech_output = 'Version 15. ' + \
         session_attributes['scene'][session_attributes['currentScene']+'+load']['description']
     #
     # sexy output
@@ -59,6 +59,7 @@ def handle_action_intent(intent, session):
         thing = response_helper.get_intent_value(intent, 'Object')
         verb = response_helper.sanitize_verb(verb)
         action = verb + '-' + thing
+        print 'handle_action_intent.action:',action
 
         if action_exists_in_scene(session, scene, action):
           action_description = get_action_description_from_scene(session, scene, action)
