@@ -7,7 +7,7 @@ def get_welcome_response():
     """
 
     session_attributes = load_scene_data()
-    session_attributes['currentScene'] = 'test_room'
+    session_attributes['currentScene'] = 'introduction'
     print 'session_attributes:', session_attributes
 
     # session_attributes['scene'] = {}
@@ -19,8 +19,8 @@ def get_welcome_response():
     # sexy output
     speech_output = session_attributes['scene'][session_attributes['currentScene']+'+load']['description']
     should_end_session = False
-    #reprompt_text = get_action_list_speech(session, session_attributes['currentScene'])
-    reprompt_text = "You can: drink water, or not."
+    reprompt_text = get_action_list_speech(session_attributes, session_attributes['currentScene'], True)
+    #reprompt_text = "You can: drink water, or not."
 
     return response_helper.build_response(session_attributes, response_helper.build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
@@ -128,8 +128,12 @@ def get_action_description_from_scene(session, scene, action):
     key = scene+'+'+action
     return get_session_attributes(session, 'scene')[key]['description']
 
-def get_actions_in_scene(session, scene):
-    scenes = get_session_attributes(session, 'scene')
+def get_actions_in_scene(session, scene, session_toggle = False):
+    scenes = []
+    if session_toggle:
+        scenes = session['scene']
+    else:
+        scenes = get_session_attributes(session, 'scene')
     actions = []
     for s in scenes:
         string = s.split('+')
@@ -140,9 +144,9 @@ def get_actions_in_scene(session, scene):
     print 'get_actions_in_scene(): actions: ', actions
     return actions
 
-def get_action_list_speech(session, scene):
+def get_action_list_speech(session, scene, session_toggle = False):
     speech = "You can: "
-    available_actions = get_actions_in_scene(session, scene)
+    available_actions = get_actions_in_scene(session, scene, session_toggle)
     for action_pair_index in range(len(available_actions)-1):
         ap = available_actions[action_pair_index]
         print "action pair: ", ap
@@ -155,7 +159,7 @@ def get_action_list_speech(session, scene):
 
 def load_scene_data():
     all_data = list()
-    with open('rpg_assets.tsv','rb') as tsvin:
+    with open('demo-rpg_assets.tsv','rb') as tsvin:
         tsvin = csv.reader(tsvin, delimiter='\t')
         for row in tsvin:
             all_data.append(row)
