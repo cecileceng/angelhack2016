@@ -7,7 +7,7 @@ def get_welcome_response():
     """
 
     session_attributes = load_scene_data()
-    session_attributes['currentScene'] = 'test_room'
+    session_attributes['currentScene'] = 'introduction'
     print 'session_attributes:', session_attributes
 
     # session_attributes['scene'] = {}
@@ -17,7 +17,7 @@ def get_welcome_response():
 
     card_title = "Welcome to AlexaRPG"
     # debug output
-    speech_output = 'Version 15. ' + \
+    speech_output = 'Version 18. ' + \
         session_attributes['scene'][session_attributes['currentScene']+'+load']['description']
     #
     # sexy output
