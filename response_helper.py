@@ -27,8 +27,8 @@ def build_response(session_attributes, speechlet_response):
     }
 
 def get_intent_value(intent, string):
-		value = intent['slots'][string]['value']
-		return sanitize_numericals_in_string(str.lower(str(value)))
+    value = intent['slots'][string]['value']
+    return sanitize_numericals_in_string(str.lower(str(value)))
 
 def sanitize_numericals_in_string(phrase):
     list_of_words = phrase.split(' ')
