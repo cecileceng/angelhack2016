@@ -17,7 +17,7 @@ def get_welcome_response():
 
     card_title = "Welcome to AlexaRPG"
     # debug output
-    speech_output = 'Version 8. ' + \
+    speech_output = 'Version 9. ' + \
         session_attributes['scene'][session_attributes['currentScene']+'+load']['description']
     #
     # sexy output
@@ -68,7 +68,6 @@ def handle_action_intent(intent, session):
           session_attributes['currentScene'] = next_scene
           scene_description = get_scene_description_from_scene(session, next_scene)
           speech_output += scene_description
-          reprompt_text = "Sorry, I didn't catch that."
 
     return response_helper.build_response(session_attributes, response_helper.build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
