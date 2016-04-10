@@ -7,7 +7,7 @@ def get_welcome_response():
     """
 
     session_attributes = load_scene_data()
-    session_attributes['currentScene'] = 'test_room'
+    session_attributes['currentScene'] = 'introduction'
     print 'session_attributes:', session_attributes
 
     # session_attributes['scene'] = {}
