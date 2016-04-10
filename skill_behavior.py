@@ -15,21 +15,20 @@ def get_welcome_response():
     # session_attributes['scene']['hotelBar']['smash']
 
     card_title = "Welcome to AlexaRPG"
-    speech_output = "Welcome to Alexa RPG. Are you ready to begin?"
-    # If the user either does not reply to the welcome message or says something
-    # that is not understood, they will be prompted again with this text.
-    reprompt_text = "Are you ready to begin?"
+    speech_output = "Welcome to Alexa RPG. Let's begin!" + \
+        session_attributes['scenes'][session_attributes['currentScene']]['description']
     should_end_session = False
-    return intent_handler.build_response(session_attributes, intent_handler.build_speechlet_response(
+
+    return response_helper.build_response(session_attributes, response_helper.build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
 
 def handle_session_end_request():
     card_title = "Session Ended"
-    speech_output = "Thank you for trying the Alexa mud simulator. " \
+    speech_output = "Thank you for playing Alexa RPG! " \
                     "Have a nice day!"
     # Setting this to true ends the session and exits the skill.
     should_end_session = True
-    return intent_handler.build_response({}, intent_handler.build_speechlet_response(
+    return response_helper.build_response({}, response_helper.build_speechlet_response(
         card_title, speech_output, None, should_end_session))
 
 def handle_action_intent(intent, session):
@@ -56,7 +55,7 @@ def handle_action_intent(intent, session):
         reprompt_text = "I'm not sure what that is. " \
                         "Please try again."
 
-    return intent_handler.build_response(session_attributes, intent_handler.build_speechlet_response(
+    return response_helper.build_response(session_attributes, response_helper.build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
 
 def handle_help_intent(intent, session):
@@ -67,7 +66,7 @@ def handle_help_intent(intent, session):
     reprompt_text = "I'm not sure what that is. " \
                     "Please try again."
 
-    return intent_handler.build_response(session_attributes, intent_handler.build_speechlet_response(
+    return response_helper.build_response(session_attributes, response_helper.build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
 
 def handle_quit_intent(intent, session):
@@ -76,7 +75,7 @@ def handle_quit_intent(intent, session):
 
     speech_output = "Goodbye."
 
-    return intent_handler.build_response(session_attributes, intent_handler.build_speechlet_response(
+    return response_helper.build_response(session_attributes, response_helper.build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
 
 def get_session_attributes(session):
@@ -113,6 +112,3 @@ def load_scene_data():
         d['scenes'] = {new_key: desc_action}
 
     return d
-
-if __name__ == '__main__':
-    print load_scene_data()
