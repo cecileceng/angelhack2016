@@ -17,7 +17,7 @@ def get_welcome_response():
 
     card_title = "Welcome to AlexaRPG"
     # debug output
-    speech_output = 'Version 1. ' + \
+    speech_output = 'Version 2. ' + \
         session_attributes['scene'][session_attributes['currentScene']]['description']
     #
     # sexy output
