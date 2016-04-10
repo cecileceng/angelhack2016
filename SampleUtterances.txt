@@ -6,3 +6,6 @@ ExamineIntent Tell me about {Object}
 ExamineIntent Tell me about the {Object}
 ExamineIntent Describe {Object}
 ExamineIntent Describe the {Object}
+
+
+ActionIntent {Action} the {Object}

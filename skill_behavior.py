@@ -1,9 +1,15 @@
+import intent_handler
+
 def get_welcome_response():
     """ If we wanted to initialize the session to have some attributes we could
     add those here
     """
 
     session_attributes = {}
+    session_attributes['descriptions'] = {}
+    session_attributes['descriptions']['camel'] = "This is a test description of the camel"
+    session_attributes['descriptions']['desk'] = "This is a test description of the desk"
+
     card_title = "Welcome"
     speech_output = "Welcome to the Alexa mud simulator. " \
                     "Are you ready to begin?"
@@ -11,7 +17,7 @@ def get_welcome_response():
     # that is not understood, they will be prompted again with this text.
     reprompt_text = "Are you ready to begin?"
     should_end_session = False
-    return build_response(session_attributes, build_speechlet_response(
+    return intent_handler.build_response(session_attributes, intent_handler.build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
 
 def handle_session_end_request():
@@ -20,23 +26,23 @@ def handle_session_end_request():
                     "Have a nice day!"
     # Setting this to true ends the session and exits the skill.
     should_end_session = True
-    return build_response({}, build_speechlet_response(
+    return intent_handler.build_response({}, intent_handler.build_speechlet_response(
         card_title, speech_output, None, should_end_session))
 
 def handle_scene_response(intent, session):
-    card_title = intent['scene']
+    card_title = "Handle Action" #intent['scene']
     session_attributes = {}
     should_end_session = False
 
     scene = get_scene_from_session(session)
 
-    if 'Scene' in intent['slots']:
-        scene = intent['slots']['Scene']['value']
-        scene_description = get_scene_description_from_scene(scene)
-        session_attributes = {"currentScene": scene}
-        speech_output = scene_description
+    #if 'Scene' in intent['slots']:
+    #    scene = intent['slots']['Scene']['value']
+    #    scene_description = get_scene_description_from_scene(scene)
+    #    session_attributes = {"currentScene": scene}
+    #    speech_output = scene_description
 
-    elif 'Action' in intent['slots']:
+    if 'Action' in intent['slots']:
         action = intent['slots']['Action']['value']
         action_description = get_action_description_from_scene(scene, action)
         speech_output = action_description
@@ -48,7 +54,7 @@ def handle_scene_response(intent, session):
         reprompt_text = "I'm not sure what that is. " \
                         "Please try again."
 
-    return build_response(session_attributes, build_speechlet_response(
+    return intent_handler.build_response(session_attributes, intent_handler.build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
 
 def get_scene_from_session(session):
