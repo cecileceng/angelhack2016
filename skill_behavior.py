@@ -105,7 +105,7 @@ def get_next_scene(scene, action):
     next_exec = session_attributes['scene'][key]['next_exec']
 
     if next_exec[:10] == 'nextscene_':
-        return next_exec
+        return next_exec[10:]
     return None
 
 def get_action_description_from_scene(scene, action):
