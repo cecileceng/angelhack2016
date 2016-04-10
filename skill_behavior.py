@@ -16,8 +16,13 @@ def get_welcome_response():
     # session_attributes['scene']['hotelBar']['smash']
 
     card_title = "Welcome to AlexaRPG"
-    speech_output = "Welcome to Alexa R-P-G. Let's begin! " + \
+    # debug output
+    speech_output = 'Version 1. ' + \
         session_attributes['scenes'][session_attributes['currentScene']]['description']
+    #
+    # sexy output
+    # speech_output = "Welcome to Alexa R-P-G. Let's begin! " + \
+    #     session_attributes['scenes'][session_attributes['currentScene']]['description']
     should_end_session = False
     reprompt_text = None
 
