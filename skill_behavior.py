@@ -7,7 +7,7 @@ def get_welcome_response():
     """
 
     session_attributes = load_scene_data()
-    session_attributes['currentScene'] = 'introduction'
+    session_attributes['currentScene'] = 'test_room'
     print 'session_attributes:', session_attributes
 
     # session_attributes['scene'] = {}
@@ -57,6 +57,7 @@ def handle_action_intent(intent, session):
     if ('Action' in intent['slots'] and 'Object' in intent['slots']) and ('value' in intent['slots']['Action'] and 'value' in intent['slots']['Object']):
         verb = response_helper.get_intent_value(intent, 'Action')
         thing = response_helper.get_intent_value(intent, 'Object')
+        verb = response_helper.sanitize_verb(verb)
         action = verb + '-' + thing
 
         if action_exists_in_scene(session, scene, action):
@@ -141,3 +142,4 @@ def load_scene_data():
 
 if __name__ == '__main__':
     print load_scene_data()
+
