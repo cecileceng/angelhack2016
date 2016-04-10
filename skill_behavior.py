@@ -24,7 +24,7 @@ def get_welcome_response():
     # speech_output = "Welcome to Alexa R-P-G. Let's begin! " + \
     #     session_attributes['scene'][session_attributes['currentScene']]['description']
     should_end_session = False
-    reprompt_text = None
+    reprompt_text = "Sorry, I didn't catch that."
 
     return response_helper.build_response(session_attributes, response_helper.build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
@@ -65,10 +65,8 @@ def handle_action_intent(intent, session):
         
         reprompt_text = "Sorry, I didn't catch that."
     else:
-        speech_output = "I'm not sure what that is. " \
-                        "Please try again."
-        reprompt_text = "I'm not sure what that is. " \
-                        "Please try again."
+        speech_output = "Sorry, I don't understand, please try again."
+        reprompt_text = "Sorry, I didn't catch that."
 
     return response_helper.build_response(session_attributes, response_helper.build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
@@ -77,18 +75,8 @@ def handle_help_intent(intent, session):
     card_title = "Help"
     should_end_session = False
 
-    speech_output = "How do I shot web?"
-    reprompt_text = "I'm not sure what that is. " \
-                    "Please try again."
-
-    return response_helper.build_response(session_attributes, response_helper.build_speechlet_response(
-        card_title, speech_output, reprompt_text, should_end_session))
-
-def handle_quit_intent(intent, session):
-    card_title = "Quit"
-    should_end_session = True
-
-    speech_output = "Goodbye."
+    speech_output = "Try giving telling me an action and an object, like drink water."
+    reprompt_text = "Sorry, I didn't catch that."
 
     return response_helper.build_response(session_attributes, response_helper.build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
