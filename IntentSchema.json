@@ -4,6 +4,10 @@
       "intent": "ExamineIntent",
       "slots": [
         {
+          "name": "Action",
+          "type": "LIST_OF_OBJECTS"
+        },
+        {
           "name": "Object",
           "type": "LIST_OF_OBJECTS"
         }
