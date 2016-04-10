@@ -22,6 +22,7 @@ def build_speechlet_response(title, output, reprompt_text, should_end_session):
 
 
 def build_response(session_attributes, speechlet_response):
+    print 'build_response.session_attributes',session_attributes
     return {
         'version': '1.0',
         'sessionAttributes': session_attributes,
