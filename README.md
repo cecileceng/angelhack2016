@@ -5,7 +5,7 @@ Alexa Adventures is an RPG platform built on Amazon Echo and inspired by old sch
 Built in 24 hours at AngelHack Austin 2016. Won "Best use of Alexa Voice Service"!
 
 ## Contributors
-Cecile Nguyen
-Matt Groot
-Ian Wilbanks
+Cecile Nguyen  
+Matt Groot  
+Ian Wilbanks  
 Chris McLennon
