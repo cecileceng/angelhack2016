@@ -75,6 +75,7 @@ def handle_action_intent(intent, session):
 def handle_help_intent(intent, session):
     card_title = "Help"
     should_end_session = False
+    session_attributes = session['attributes']
 
     speech_output = "Try giving telling me an action and an object, like drink water."
     reprompt_text = "Sorry, I didn't catch that."
