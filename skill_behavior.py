@@ -8,6 +8,7 @@ def get_welcome_response():
 
     session_attributes = load_scene_data()
     session_attributes['currentScene'] = 'test_room+load'
+    print 'session_attributes:', session_attributes
 
     # session_attributes['scene'] = {}
     # session_attributes['scene']['hotelBar'] = {}
