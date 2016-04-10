@@ -57,10 +57,12 @@ def on_intent(intent_request, session):
     intent = intent_request['intent']
     intent_name = intent_request['intent']['name']
 
-    if intent_name == "ExamineIntent":
-        return intent_handler.handle_examineIntent(intent, session)
-    elif intent_name == "ActionIntent":
-        return skill_behavior.handle_scene_response(intent, session)
+    if intent_name == "ActionIntent":
+        return skill_behavior.handle_action_intent(intent, session)
+		elif intent_name == "HelpIntent":
+        return skill_behavior.handle_help_intent(intent, session)
+		elif intent_name == "QuitIntent":
+        return skill_behavior.handle_quit_intent(intent, session)
     else:
         raise ValueError("Invalid intent")
 
