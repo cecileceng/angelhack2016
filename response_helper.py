@@ -1,4 +1,5 @@
 import re
+import csv
 
 def build_speechlet_response(title, output, reprompt_text, should_end_session):
     return {
@@ -83,8 +84,19 @@ def numToWords(num,join=True):
     if join: return ' '.join(words)
     return words
 
-if __name__ == '__main__':
-    print sanitize_numericals_in_string('3 blind mice')
-    print sanitize_numericals_in_string('12 days of Christmas')
-    print numToWords(1984)
+def sanitize_verb(verb):
+    all_data = dict()
+    with open('fuzzy_words.tsv','rb') as tsvin:
+        tsvin = csv.reader(tsvin, delimiter='\t')
+        for row in tsvin:
+            all_data[row[0]] = row[1].split(',')
 
+    if verb in all_data.keys(): 
+        return verb
+
+    for k in all_data.keys():
+        for e in all_data[k]:
+            if e == verb:
+                return k
+
+    return verb
