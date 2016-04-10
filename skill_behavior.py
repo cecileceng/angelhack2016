@@ -6,9 +6,16 @@ def get_welcome_response():
     """
 
     session_attributes = {}
-    session_attributes['descriptions'] = {}
-    session_attributes['descriptions']['camel'] = "This is a test description of the camel"
-    session_attributes['descriptions']['desk'] = "This is a test description of the desk"
+    session_attributes['currentScene'] = 'hotelBar'
+
+    session_attributes['scene'] = {}
+    session_attributes['scene']['hotelBar'] = {}
+    session_attributes['scene']['hotelBar']['examine:bar'] = "This is the test description of the hotel bar"
+    session_attributes['scene']['hotelBar']['smash']
+
+    #session_attributes['descriptions'] = {}
+    #session_attributes['descriptions']['camel'] = "This is a test description of the camel"
+    #session_attributes['descriptions']['desk'] = "This is a test description of the desk"
 
     card_title = "Welcome"
     speech_output = "Welcome to the Alexa mud simulator. " \
@@ -35,12 +42,6 @@ def handle_action_intent(intent, session):
     should_end_session = False
 
     scene = get_scene_from_session(session)
-
-    #if 'Scene' in intent['slots']:
-    #    scene = intent['slots']['Scene']['value']
-    #    scene_description = get_scene_description_from_scene(scene)
-    #    session_attributes = {"currentScene": scene}
-    #    speech_output = scene_description
 
     if 'Action' in intent['slots']:
         # get and sanitize action value
@@ -81,18 +82,20 @@ def handle_quit_intent(intent, session):
     return intent_handler.build_response(session_attributes, intent_handler.build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
 
+def get_session_attributes(session):
+    return session.get('attributes', {})
+
 def get_scene_from_session(session):
-    session_attributes = {}
-    reprompt_text = None
 
     if "currentScene" in session.get('attributes', {}):
-        scene = session['attributes']['currentScene']
+        return session['attributes']['currentScene']
     else:
-        scene = 'start'
+        return 'ERROR'
 
-def get_scene_description_from_scene(scene):
+def get_scene_description_from_scene(session, scene):
+        return get_session_attributes(session)['scene'][scene]
         # TODO parse description text from scene map
-        return 'Llamas'
+        #return 'Llamas'
 
 def get_action_description_from_scene(scene, action):
         # TODO parse action description text from scene map
