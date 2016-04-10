@@ -17,7 +17,7 @@ def get_welcome_response():
 
     card_title = "Welcome to AlexaRPG"
     # debug output
-    speech_output = 'Version 7. ' + \
+    speech_output = 'Version 9. ' + \
         session_attributes['scene'][session_attributes['currentScene']+'+load']['description']
     #
     # sexy output
@@ -51,23 +51,23 @@ def handle_action_intent(intent, session):
 
     print 'handle_action_intent.scene', scene
 
+    speech_output = "Sorry, I don't understand, please try again."
+    reprompt_text = "Sorry, I didn't catch that."
+
     if ('Action' in intent['slots'] and 'Object' in intent['slots']) and ('value' in intent['slots']['Action'] and 'value' in intent['slots']['Object']):
         verb = response_helper.get_intent_value(intent, 'Action')
         thing = response_helper.get_intent_value(intent, 'Object')
         action = verb + '-' + thing
-        action_description = get_action_description_from_scene(session, scene, action)
-        speech_output += action_description
-        next_scene = get_next_scene(session, scene, action)
-        print 'handle_action_intent.next_scene', next_scene
-        should_end_session = terminate_conversation(session, scene, action)
-        session_attributes['currentScene'] = next_scene
-        scene_description = get_scene_description_from_scene(session, next_scene)
-        speech_output += scene_description
-          
-        reprompt_text = "Sorry, I didn't catch that."
-    else:
-        speech_output = "Sorry, I don't understand, please try again."
-        reprompt_text = "Sorry, I didn't catch that."
+
+        if action_exists_in_scene(session, scene, action):
+          action_description = get_action_description_from_scene(session, scene, action)
+          speech_output += action_description
+          next_scene = get_next_scene(session, scene, action)
+          print 'handle_action_intent.next_scene', next_scene
+          should_end_session = terminate_conversation(session, scene, action)
+          session_attributes['currentScene'] = next_scene
+          scene_description = get_scene_description_from_scene(session, next_scene)
+          speech_output += scene_description
 
     return response_helper.build_response(session_attributes, response_helper.build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
@@ -110,6 +110,11 @@ def get_next_scene(session, scene, action):
     if next_exec[:10] == 'nextscene_':
         return next_exec[10:]
     return scene
+
+def action_exists_in_scene(session, scene, action):
+    key = scene + '+' + action
+    print 'action_exists_in_scene.(key)', key
+    return key in get_session_attributes(session, 'scene')
 
 def get_action_description_from_scene(session, scene, action):
     key = scene+'+'+action
