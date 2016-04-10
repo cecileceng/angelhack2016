@@ -63,10 +63,10 @@ def on_intent(intent_request, session):
         return skill_behavior.handle_action_intent(intent, session)
     elif intent_name == "AMAZON.HelpIntent":
         return skill_behavior.handle_help_intent(intent, session)
-    elif intent_name == "AMAZON.CancelIntent":
-        return skill_behavior.handle_quit_intent(intent, session)
+    elif intent_name == "AMAZON.CancelIntent" or intent_name == "AMAZON.StopIntent":
+        return skill_behavior.handle_session_end_request()
     else:
-        raise ValueError("Invalid intent")
+        return skill_behavior.handle_help_intent(intent, session)
 
     # Dispatch to your skill's intent handlers
     # Use intent-handler.py
