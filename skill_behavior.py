@@ -62,14 +62,26 @@ def handle_action_intent(intent, session):
         print 'handle_action_intent.action:',action
 
         if action_exists_in_scene(session, scene, action):
-          action_description = get_action_description_from_scene(session, scene, action)
-          speech_output += action_description
-          next_scene = get_next_scene(session, scene, action)
-          print 'handle_action_intent.next_scene', next_scene
-          should_end_session = terminate_conversation(session, scene, action)
-          session_attributes['currentScene'] = next_scene
-          scene_description = get_scene_description_from_scene(session, next_scene)
-          speech_output += scene_description
+            action_description = get_action_description_from_scene(session, scene, action)
+            next_scene = get_next_scene(session, scene, action)
+            print 'handle_action_intent.next_scene', next_scene
+            should_end_session = terminate_conversation(session, scene, action)
+            session_attributes['currentScene'] = next_scene
+            scene_description = get_scene_description_from_scene(session, next_scene)
+
+            speech_output = action_description
+            speech_output += scene_description
+
+        reprompt_text = "You can: "
+        available_actions = get_actions_in_scene(session, scene, action)
+        for action_pair_index in range(len(available_actions)-1):
+            ap = available_actions[action_pair_index]
+            print "action pair: ", ap
+            reprompt_text += ap[0] + " " + ap[1] + ", "
+        if len(available_actions) > 1:
+            reprompt_text += "or "
+        if len(available_actions) > 0:
+            reprompt_text += available_actions[-1][0] + " " + available_actions[-1][1]
 
     return response_helper.build_response(session_attributes, response_helper.build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
@@ -121,6 +133,18 @@ def action_exists_in_scene(session, scene, action):
 def get_action_description_from_scene(session, scene, action):
     key = scene+'+'+action
     return get_session_attributes(session, 'scene')[key]['description']
+
+def get_actions_in_scene(session, scene, action):
+    scenes = get_session_attributes(session, 'scene')
+    actions = []
+    for s in scenes:
+        string = s.split('+')
+        if scene == string[0]:
+            action = string[1].split('-')
+            if len(action) > 1:
+                actions.append([action[0], action[1]])
+    print 'get_actions_in_scene(): actions: ', actions
+    return actions
 
 def load_scene_data():
     all_data = list()
