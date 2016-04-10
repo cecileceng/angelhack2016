@@ -17,7 +17,7 @@ def get_welcome_response():
 
     card_title = "Welcome to AlexaRPG"
     # debug output
-    speech_output = 'Version 3. ' + \
+    speech_output = 'Version 5. ' + \
         session_attributes['scene'][session_attributes['currentScene']+'+load']['description']
     #
     # sexy output
@@ -58,6 +58,7 @@ def handle_action_intent(intent, session):
         speech_output += action_description
         next_scene = get_next_scene(session, scene, action)
         print 'handle_action_intent.next_scene', next_scene
+        should_end_session = terminate_conversation(session, scene, action)
         session_attributes['currentScene'] = next_scene
         scene_description = get_scene_description_from_scene(session, next_scene)
         speech_output += scene_description
@@ -90,6 +91,14 @@ def get_scene_from_session(session):
 def get_scene_description_from_scene(session, scene):
     key = scene+'+load'
     return get_session_attributes(session, 'scene')[key]['description']
+
+def terminate_conversation(session, scene, action):
+    key = scene+'+'+action
+    next_exec = get_session_attributes(session, 'scene')[key]['next_exec']
+
+    if next_exec == 'exec_endgame':
+        return True
+    return False
 
 def get_next_scene(session, scene, action):
     print 'get_next_scene.(scene,action)', scene, action
