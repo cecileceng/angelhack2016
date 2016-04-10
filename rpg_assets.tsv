@@ -4,7 +4,8 @@ test_room	drink-water	You drink the water. You die of poisoning. Good game. 	exe
 test_room	do-nothing	You don't drink the water. You die of boredom. Good game. 	exec_endgame
 test_room	exit-room	You exit the scene. 	nextscene_test_room_2
 test_room_2	load	You are in the second scene. Hip hip hurray! 	exec_endgame
-introduction	load	It’s nearly midnight. You received a text message from your business partner earlier this evening. He’s not typically the type to message late at night, and certainly not the type who seems easily fazed. But tonight was different. Your partner has since been unresponsive with your calls and text messages. You glance down at your phone to look at the time and the last message you received… ‘The dark visions have been increasing… I know it will sound crazy, but I think we’re in danger. Not just us but everyone. I can’t stay here. Meet me at the hotel at midnight. My friend Henry runs the place, tell him that Birdie sent you. The bar is always deserted so we can talk there. I only hope we’re not too late to stop it.’ 	nextscene_hotel_bar_1a
+introduction	load	Say 'enter bar' 	
+introduction	enter-bar	You enter the bar. 	nextscene_hotel_bar_1a
 hotel_bar_1a	load	You are in a dimly lit hotel bar. It’s near closing time, so it’s empty aside from the bartender polishing the last of the glasses from the evening’s crowd. 	
 hotel_bar_1a	reload	You can... examine bar, examine bartender, talk to bartender, attack bartender, examine glasses, pick up glasses, exit room. 	
 hotel_bar_1a	examine-bar	It’s a typical hotel bar. The smell of cigarettes is pervasive and the tables and counters are sticky from spilled drinks. 	
