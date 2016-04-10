@@ -19,7 +19,8 @@ def get_welcome_response():
     # sexy output
     speech_output = session_attributes['scene'][session_attributes['currentScene']+'+load']['description']
     should_end_session = False
-    reprompt_text = "Sorry, I didn't catch that."
+    #reprompt_text = get_action_list_speech(session, session_attributes['currentScene'])
+    reprompt_text = "You can: drink water, or not."
 
     return response_helper.build_response(session_attributes, response_helper.build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
@@ -67,16 +68,7 @@ def handle_action_intent(intent, session):
             speech_output = action_description
             speech_output += scene_description
 
-        reprompt_text = "You can: "
-        available_actions = get_actions_in_scene(session, scene, action)
-        for action_pair_index in range(len(available_actions)-1):
-            ap = available_actions[action_pair_index]
-            print "action pair: ", ap
-            reprompt_text += ap[0] + " " + ap[1] + ", "
-        if len(available_actions) > 1:
-            reprompt_text += "or "
-        if len(available_actions) > 0:
-            reprompt_text += available_actions[-1][0] + " " + available_actions[-1][1]
+        reprompt_text = get_action_list_speech(session, scene)
 
     return response_helper.build_response(session_attributes, response_helper.build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
@@ -129,7 +121,7 @@ def get_action_description_from_scene(session, scene, action):
     key = scene+'+'+action
     return get_session_attributes(session, 'scene')[key]['description']
 
-def get_actions_in_scene(session, scene, action):
+def get_actions_in_scene(session, scene):
     scenes = get_session_attributes(session, 'scene')
     actions = []
     for s in scenes:
@@ -140,6 +132,19 @@ def get_actions_in_scene(session, scene, action):
                 actions.append([action[0], action[1]])
     print 'get_actions_in_scene(): actions: ', actions
     return actions
+
+def get_action_list_speech(session, scene):
+    speech = "You can: "
+    available_actions = get_actions_in_scene(session, scene)
+    for action_pair_index in range(len(available_actions)-1):
+        ap = available_actions[action_pair_index]
+        print "action pair: ", ap
+        speech += ap[0] + " " + ap[1] + ", "
+    if len(available_actions) > 1:
+        speech += "or "
+    if len(available_actions) > 0:
+        speech += available_actions[-1][0] + " " + available_actions[-1][1]
+    return speech
 
 def load_scene_data():
     all_data = list()
