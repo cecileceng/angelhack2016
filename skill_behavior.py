@@ -18,11 +18,11 @@ def get_welcome_response():
     card_title = "Welcome to AlexaRPG"
     # debug output
     speech_output = 'Version 1. ' + \
-        session_attributes['scenes'][session_attributes['currentScene']]['description']
+        session_attributes['scene'][session_attributes['currentScene']]['description']
     #
     # sexy output
     # speech_output = "Welcome to Alexa R-P-G. Let's begin! " + \
-    #     session_attributes['scenes'][session_attributes['currentScene']]['description']
+    #     session_attributes['scene'][session_attributes['currentScene']]['description']
     should_end_session = False
     reprompt_text = None
 
@@ -45,25 +45,19 @@ def handle_action_intent(intent, session):
     scene = get_scene_from_session(session)
     speech_output = ''
 
-    print 1 #DEBUG DELETE ME PPLSSSSS
 
     if 'Action' in intent['slots'] and 'Object' in intent['slots']:
-        print 2 #DEBUG DELETE ME PPLSSSSS
         verb = response_helper.get_intent_value(intent, 'Action')
         thing = response_helper.get_intent_value(intent, 'Object')
-        print 3 #DEBUG DELETE ME PPLSSSSS
         action = verb + '-' + thing
         action_description = get_action_description_from_scene(scene, action)
         speech_output += action_description
-        print 4 #DEBUG DELETE ME PPLSSSSS
         next_scene = get_next_scene(scene, action)
         scene_description = get_scene_description_from_scene(next_scene)
         speech_output += scene_description
-        print 5 #DEBUG DELETE ME PPLSSSSS
         
         reprompt_text = "Sorry, I didn't catch that."
     else:
-        print 6 #DEBUG DELETE ME PPLSSSSS
         speech_output = "I'm not sure what that is. " \
                         "Please try again."
         reprompt_text = "I'm not sure what that is. " \
@@ -101,14 +95,22 @@ def get_scene_from_session(session):
     else:
         return 'ERROR'
 
-def get_scene_description_from_scene(session, scene):
-    return get_session_attributes(session)['scene'][scene]
-    # TODO parse description text from scene map
-    #return 'Llamas'
+def get_scene_description_from_scene(scene):
+    key = scene+'+load'
+    return session_attributes['scene'][key]['description']
+
+def get_next_scene(scene, action):
+    print 'get_next_scene.(scene,action)',scene,action
+    key = scene+'+'+action
+    next_exec = session_attributes['scene'][key]['next_exec']
+
+    if next_exec[:10] = 'nextscene_':
+        return next_exec
+    return None
 
 def get_action_description_from_scene(scene, action):
-    # TODO parse action description text from scene map
-    return 'Do a flip!'
+    key = scene+'+'+action
+    return session_attributes['scene'][key]['description']
 
 def load_scene_data():
     all_data = list()
@@ -118,14 +120,14 @@ def load_scene_data():
             all_data.append(row)
 
     d = dict()
-    d['scenes'] = {}
+    d['scene'] = {}
     for r in all_data:
         desc_action = dict()
         desc_action['description'] = r[2]
         desc_action['next_exec'] = r[3]
 
         new_key = r[0] + '+' + r[1]
-        d['scenes'][new_key] = desc_action
+        d['scene'][new_key] = desc_action
 
     return d
 
