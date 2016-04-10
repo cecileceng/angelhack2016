@@ -19,6 +19,7 @@ def get_welcome_response():
     speech_output = "Welcome to Alexa RPG. Let's begin!" + \
         session_attributes['scenes'][session_attributes['currentScene']]['description']
     should_end_session = False
+    reprompt_text = None
 
     return response_helper.build_response(session_attributes, response_helper.build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
