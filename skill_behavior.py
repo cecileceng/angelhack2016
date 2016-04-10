@@ -1,4 +1,4 @@
-import intent_handler
+import response_helper
 
 def get_welcome_response():
     """ If we wanted to initialize the session to have some attributes we could
@@ -36,7 +36,7 @@ def handle_session_end_request():
     return intent_handler.build_response({}, intent_handler.build_speechlet_response(
         card_title, speech_output, None, should_end_session))
 
-def handle_scene_response(intent, session):
+def handle_action_intent(intent, session):
     card_title = "Handle Action" #intent['scene']
     session_attributes = {}
     should_end_session = False
@@ -54,6 +54,26 @@ def handle_scene_response(intent, session):
                         "Please try again."
         reprompt_text = "I'm not sure what that is. " \
                         "Please try again."
+
+    return intent_handler.build_response(session_attributes, intent_handler.build_speechlet_response(
+        card_title, speech_output, reprompt_text, should_end_session))
+
+def handle_help_intent(intent, session):
+    card_title = "Help"
+    should_end_session = False
+
+    speech_output = "How do I shot web?"
+    reprompt_text = "I'm not sure what that is. " \
+                    "Please try again."
+
+    return intent_handler.build_response(session_attributes, intent_handler.build_speechlet_response(
+        card_title, speech_output, reprompt_text, should_end_session))
+
+def handle_quit_intent(intent, session):
+    card_title = "Quit"
+    should_end_session = True
+
+    speech_output = "Goodbye."
 
     return intent_handler.build_response(session_attributes, intent_handler.build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
@@ -76,4 +96,8 @@ def get_scene_description_from_scene(session, scene):
 def get_action_description_from_scene(scene, action):
         # TODO parse action description text from scene map
         return 'Do a flip!'
+
+def load_scene_data():
+        # TODO load scene data from file
+        return
 
