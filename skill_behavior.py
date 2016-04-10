@@ -77,7 +77,7 @@ def handle_help_intent(intent, session):
     should_end_session = False
     session_attributes = session['attributes']
 
-    speech_output = "Try giving telling me an action and an object, like drink water."
+    speech_output = "Try giving me an action and an object, like drink water."
     reprompt_text = "Sorry, I didn't catch that."
 
     return response_helper.build_response(session_attributes, response_helper.build_speechlet_response(
