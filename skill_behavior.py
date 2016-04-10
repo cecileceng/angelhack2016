@@ -7,7 +7,7 @@ def get_welcome_response():
     """
 
     session_attributes = load_scene_data()
-    session_attributes['currentScene'] = 'introduction'
+    session_attributes['currentScene'] = 'test_room'
     print 'session_attributes:', session_attributes
 
     # session_attributes['scene'] = {}
@@ -78,6 +78,7 @@ def handle_action_intent(intent, session):
         if len(available_actions) > 0:
             reprompt_text += available_actions[-1][0] + " " + available_actions[-1][1]
 
+    print 'should_end_session',should_end_session # kill me
     return response_helper.build_response(session_attributes, response_helper.build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
 
@@ -106,8 +107,10 @@ def get_scene_description_from_scene(session, scene):
 def terminate_conversation(session, scene, action):
     key = scene+'+'+action
     next_exec = get_session_attributes(session, 'scene')[key]['next_exec']
+    print 'terminate_conversation.next_exec:',next_exec
 
     if next_exec == 'exec_endgame':
+        print 'terminate_conversation: True'
         return True
     return False
 
