@@ -1,0 +1,13 @@
+{
+  "intents": [
+    {
+      "intent": "ReadTSV",
+      "slots": [
+        {
+          "name": "key",
+          "type": "LIST_OF_KEYS"
+        }
+      ]
+    }
+  ]
+}

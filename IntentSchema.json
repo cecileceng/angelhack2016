@@ -4,15 +4,6 @@
       "intent": "ExamineIntent",
       "slots": [
         {
-          "name": "Object",
-          "type": "LIST_OF_OBJECTS"
-        }
-      ]
-    },
-    {
-      "intent": "ActionIntent",
-      "slots": [
-        {
           "name": "Action",
           "type": "LIST_OF_OBJECTS"
         },
