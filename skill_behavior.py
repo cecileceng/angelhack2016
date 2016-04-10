@@ -40,14 +40,15 @@ def handle_action_intent(intent, session):
     speech_output = ''
 
     if 'Action' in intent['slots'] and 'Object' in intent['slots']:
-                verb = response_helper.get_intent_value(intent, 'Action')
-                thing = response_helper.get_intent_value(intent, 'Object')
-                action = verb + '-' + thing
+        verb = response_helper.get_intent_value(intent, 'Action')
+        thing = response_helper.get_intent_value(intent, 'Object')
+        action = verb + '-' + thing
         action_description = get_action_description_from_scene(scene, action)
         speech_output += action_description
-                next_scene = get_next_scene(scene, action)
-                scene_description = get_scene_description_from_scene(next_scene)
-                speech_output += scene_description
+        next_scene = get_next_scene(scene, action)
+        scene_description = get_scene_description_from_scene(next_scene)
+        speech_output += scene_description
+        
         reprompt_text = "Sorry, I didn't catch that."
     else:
         speech_output = "I'm not sure what that is. " \

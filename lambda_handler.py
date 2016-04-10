@@ -59,9 +59,9 @@ def on_intent(intent_request, session):
 
     if intent_name == "ActionIntent":
         return skill_behavior.handle_action_intent(intent, session)
-    elif intent_name == "HelpIntent":
+    elif intent_name == "AMAZON.HelpIntent":
         return skill_behavior.handle_help_intent(intent, session)
-    elif intent_name == "QuitIntent":
+    elif intent_name == "AMAZON.CancelIntent":
         return skill_behavior.handle_quit_intent(intent, session)
     else:
         raise ValueError("Invalid intent")
