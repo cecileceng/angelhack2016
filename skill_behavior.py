@@ -1,4 +1,5 @@
 import response_helper
+import csv
 
 def get_welcome_response():
     """ If we wanted to initialize the session to have some attributes we could
@@ -86,22 +87,33 @@ def get_session_attributes(session):
     return session.get('attributes', {})
 
 def get_scene_from_session(session):
-
     if "currentScene" in session.get('attributes', {}):
         return session['attributes']['currentScene']
     else:
         return 'ERROR'
 
 def get_scene_description_from_scene(session, scene):
-        return get_session_attributes(session)['scene'][scene]
-        # TODO parse description text from scene map
-        #return 'Llamas'
+    return get_session_attributes(session)['scene'][scene]
+    # TODO parse description text from scene map
+    #return 'Llamas'
 
 def get_action_description_from_scene(scene, action):
-        # TODO parse action description text from scene map
-        return 'Do a flip!'
+    # TODO parse action description text from scene map
+    return 'Do a flip!'
 
 def load_scene_data():
-        # TODO load scene data from file
-        return
+    all_data = list()
+    with open('rpg_assets.tsv','rb') as tsvin:
+        tsvin = csv.reader(tsvin, delimiter='\t')
+        for row in tsvin:
+            all_data.append(row)
 
+    d = dict()
+    for r in all_data:
+        new_key = r[0] + '+' + r[1]
+        desc_action = dict()
+        desc_action['description'] = r[2]
+        desc_action['next_exec'] = r[3]
+        d[new_key] = desc_action
+
+    return d
