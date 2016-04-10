@@ -7,7 +7,7 @@ def get_welcome_response():
     """
 
     session_attributes = load_scene_data()
-    session_attributes['currentScene'] = 'test_room'
+    session_attributes['currentScene'] = 'introduction'
     print 'session_attributes:', session_attributes
 
     # session_attributes['scene'] = {}
@@ -159,7 +159,7 @@ def get_action_list_speech(session, scene, session_toggle = False):
 
 def load_scene_data():
     all_data = list()
-    with open('rpg_assets.tsv','rb') as tsvin:
+    with open('demo-rpg_assets.tsv','rb') as tsvin:
         tsvin = csv.reader(tsvin, delimiter='\t')
         for row in tsvin:
             all_data.append(row)
