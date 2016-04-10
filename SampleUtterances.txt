@@ -1,8 +1,6 @@
-ExamineIntent Examine {Object}
-ExamineIntent Examine the {Object}
-ExamineIntent Look at {Object}
-ExamineIntent Look at the {Object}
-ExamineIntent Tell me about {Object}
-ExamineIntent Tell me about the {Object}
-ExamineIntent Describe {Object}
-ExamineIntent Describe the {Object}
+ActionIntent {Action} {Object}
+ActionIntent {Action} a {Object}
+ActionIntent {Action} the {Object}
+ActionIntent {Object}, {Action} it
+ActionIntent a {Object}, {Action} it
+ActionIntent the {Object}, {Action} it
