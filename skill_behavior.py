@@ -61,7 +61,7 @@ def handle_action_intent(intent, session):
             action_description = get_action_description_from_scene(session, scene, action)
             next_scene = get_next_scene(session, scene, action)
             print 'handle_action_intent.next_scene', next_scene
-            should_end_session = terminate_conversation(session, scene, action)
+            should_end_session = terminate_conversation(next_scene)
             session_attributes['currentScene'] = next_scene
             scene_description = get_scene_description_from_scene(session, next_scene)
 
@@ -71,6 +71,8 @@ def handle_action_intent(intent, session):
         reprompt_text = get_action_list_speech(session, scene)
 
     print 'should_end_session',should_end_session # kill me
+    if should_end_session: 
+        reprompt_text = None
     return response_helper.build_response(session_attributes, response_helper.build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
 
@@ -96,15 +98,17 @@ def get_scene_description_from_scene(session, scene):
     key = scene+'+load'
     return get_session_attributes(session, 'scene')[key]['description']
 
-def terminate_conversation(session, scene, action):
-    key = scene+'+'+action
-    next_exec = get_session_attributes(session, 'scene')[key]['next_exec']
-    print 'terminate_conversation.next_exec:',next_exec
+def terminate_conversation(next_scene):
+    return next_scene == 'endgame'
 
-    if next_exec == 'exec_endgame':
-        print 'terminate_conversation: True'
-        return True
-    return False
+    # key = scene+'+'+action
+    # next_exec = get_session_attributes(session, 'scene')[key]['next_exec']
+    # print 'terminate_conversation.next_exec:',next_exec
+
+    # if next_exec == 'exec_endgame':
+    #     print 'terminate_conversation: True'
+    #     return True
+    # return False
 
 def get_next_scene(session, scene, action):
     print 'get_next_scene.(scene,action)', scene, action

@@ -1,9 +1,10 @@
 test_room	load	Version 0. You are in a room. Outside it is dark and stormy. There is a drink. 	
 test_room	reload	You can... drink water, do nothing, or exit room. 	
-test_room	drink-water	You drink the water. You are refreshed! 	exec_endgame
-test_room	do-nothing	You don't drink the water. You die of boredom. 	exec_endgame
+test_room	drink-water	You drink the water. You are refreshed! 	nextscene_endgame
+test_room	do-nothing	You don't drink the water. You die of boredom. 	nextscene_endgame
 test_room	exit-room	You exit the scene. 	nextscene_test_room_2
-test_room_2	load	You are in the second scene. Hip hip hurray! 	exec_endgame
+test_room_2	load	You are in the second scene. Hip hip hurray! 	nextscene_endgame
+endgame	load		
 introduction	load	Welcome to Alexa Adventures. When you are ready, say "let's play". 	
 introduction	let's-play	It's nearly midnight. You received a text message from your business partner Burt Wordsworth earlier this evening. He's not typically the type to message late at night. Burt has since been unresponsive with your calls and text messages. You glance down at your phone to look at the time and the last message you received… ‘The dark visions have been increasing… I know it sounds crazy, but I think we're in danger. Not just us but everyone. I can't stay here. Meet me at the hotel at midnight. My friend Henry runs the bar, tell him that Birdie sent you. I hope we're not too late to stop it...' 	nextscene_hotel_bar_1a
 hotel_bar_1a	load	You are in a dimly lit hotel bar. It's near closing time, so it's empty aside from the bartender polishing the last of the glasses from the evening's crowd. 	
@@ -30,9 +31,9 @@ alleyway_2a	go-south	The lizardman is after you, so now it’s your job to keep 
 alleyway_2b	load	The alleyway is dark and deserted. As you pick yourself up off the ground, but as you do a loud crash can be heard behind you from the door to the bar which you were recently booted from.  The alleyway is a dead end to the west but opens to the main road to the east. From there if you head North you can try to stop by Birdie’s apartment. If you head South you can just head home. Which way do you head? Say North or South. 	
 alleyway_2b	reload	You can... say north, say south. 	
 alleyway_2b	go-north	You walk slowly to Birdie’s apartment nursing your wounds.  You get a few dirty looks from passersby as you walk up the steps to his fancy building. 	nextscene_birdie_apartment_7a
-alleyway_2b	go-south	You get hopelessly lost in the city.  Your phone’s dead and you have become exhausted. A belligerent man wearing nothing but a top hat and a dirty pair of jeans starts yelling at you. You try to avoid him by crossing the street, but he disappears in a puff of smoke only to reappear right in front of you. You yell at him, “Get away!” Unfazed he shrieks “DOOM! The darkness had arrived. Only I can save you!!.”  He blows a handful of dust into your face and you feel yourself transforming.  Your body writhes in pain and you fall to your hands and knees.  As your body shrinks you feel your nose elongating.  You stare at your hands which have turned into tiny paws. The last feeling you have is an overwhelming desire for cheese.  	exec_endgame
-police_station_6a	load	You are in the last demo scene. Hip hip hurray! 	exec_endgame
-police_station_6b	load	You are in the last demo scene. Hip hip hurray! 	exec_endgame
-cemetery_5a	load	You are in the last demo scene. Hip hip hurray! 	exec_endgame
-lost_city_8a	load	You are in the last demo scene. Hip hip hurray! 	exec_endgame
-birdie_apartment_7a	load	You are in the last demo scene. Hip hip hurray! 	exec_endgame
+alleyway_2b	go-south	You get hopelessly lost in the city.  Your phone’s dead and you have become exhausted. A belligerent man wearing nothing but a top hat and a dirty pair of jeans starts yelling at you. You try to avoid him by crossing the street, but he disappears in a puff of smoke only to reappear right in front of you. You yell at him, “Get away!” Unfazed he shrieks “DOOM! The darkness had arrived. Only I can save you!!.”  He blows a handful of dust into your face and you feel yourself transforming.  Your body writhes in pain and you fall to your hands and knees.  As your body shrinks you feel your nose elongating.  You stare at your hands which have turned into tiny paws. The last feeling you have is an overwhelming desire for cheese.  	nextscene_endgame
+police_station_6a	load	You are in the last demo scene. Hip hip hurray! 	nextscene_endgame
+police_station_6b	load	You are in the last demo scene. Hip hip hurray! 	nextscene_endgame
+cemetery_5a	load	You are in the last demo scene. Hip hip hurray! 	nextscene_endgame
+lost_city_8a	load	You are in the last demo scene. Hip hip hurray! 	nextscene_endgame
+birdie_apartment_7a	load	You are in the last demo scene. Hip hip hurray! 	nextscene_endgame
