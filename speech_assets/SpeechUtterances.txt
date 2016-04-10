@@ -2,11 +2,7 @@ ActionIntent {Action} {Object}
 ActionIntent {Action} a {Object}
 ActionIntent {Action} an {Object}
 ActionIntent {Action} the {Object}
-ActionIntent {Object}, {Action} it
-ActionIntent a {Object}, {Action} it
-ActionIntent an {Object}, {Action} it
-ActionIntent the {Object}, {Action} it
-ActionIntent {Action} the {NPC}
-ActionIntent {Action} {NPC}
-ActionIntent {Action} the {Scene}
-ActionIntent {Direction}
+ActionIntent {Object} {Action} it
+ActionIntent a {Object} {Action} it
+ActionIntent an {Object} {Action} it
+ActionIntent the {Object} {Action} it
